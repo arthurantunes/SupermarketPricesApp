@@ -6,10 +6,10 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
 {
     public interface IProductQuery
     {
-        Task<List<ProductViewModel>> GetAllProducts();
+        Task<List<ProductViewModel>> GetAllProductsAsync();
 
-        Task<ProductSupermarketPriceViewModel> GetAllProductsPrice(int productId);
-        Task<ProductSupermarketPriceViewModel> GetAllProductsByPrice(int productId, int priceFrom, int priceTo);
-        Task<List<ProductViewModel>> GetProductsByName(string name);
+        Task<ProductSupermarketPriceViewModel> GetAllProductsPriceAsync(int productId);
+        Task<ProductSupermarketPriceViewModel> GetAllProductsByPriceAsync(int productId, int priceFrom, int priceTo);
+        Task<List<ProductViewModel>> GetProductsByNameAsync(string name);
     }
 }

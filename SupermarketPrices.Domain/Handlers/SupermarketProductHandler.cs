@@ -29,7 +29,6 @@ namespace SupermarketPrices.Domain.Handlers
 
         public async Task<GenericCommandResult> Handle(UpdateProductPriceCommand command)
         {
-            var supermarketProduct = new SupermarketProduct(command.SupermarketId, command.ProductId, command.Date, command.Price);
 
             command.Validate();
             if (!command.IsValid)

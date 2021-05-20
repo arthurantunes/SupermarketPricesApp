@@ -15,12 +15,10 @@ namespace SupermarketPrices.Api.Controllers
     {
 
         private readonly SupermarketHandler handler;
-        private readonly ISupermarketQuery supermarketQuery;
 
-        public SupermarketController(SupermarketHandler supermarketHandler, ISupermarketQuery query)
+        public SupermarketController(SupermarketHandler supermarketHandler)
         {
             handler = supermarketHandler;
-            supermarketQuery = query;
         }
 
         [Route("")]

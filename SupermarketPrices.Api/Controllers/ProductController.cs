@@ -24,9 +24,9 @@ namespace SupermarketPrices.Api.Controllers
 
         [Route("")]
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromServices] IProductRepository repository)
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(await productQuery.GetAllProducts());
+            return Ok(await productQuery.GetAllProductsAsync());
         }
 
         [Route("")]
@@ -72,21 +72,21 @@ namespace SupermarketPrices.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProductPrices(int productId)
         {
-            return Ok(await productQuery.GetAllProductsPrice(productId));
+            return Ok(await productQuery.GetAllProductsPriceAsync(productId));
         }
 
         [Route("/{productId:int}/prices/{priceFrom:int}/{priceTo:int}")]
         [HttpGet]
         public async Task<IActionResult> GetAllProductPricesBetween(int productId, int priceFrom, int priceTo)
         {
-            return Ok(await productQuery.GetAllProductsByPrice(productId, priceFrom, priceTo));
+            return Ok(await productQuery.GetAllProductsByPriceAsync(productId, priceFrom, priceTo));
         }
 
         [Route("/name/{name}")]
         [HttpGet]
         public async Task<IActionResult> GetAllProductByName(string name)
         {
-            return Ok(await productQuery.GetProductsByName(name));
+            return Ok(await productQuery.GetProductsByNameAsync(name));
         }
     }
 }

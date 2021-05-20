@@ -26,7 +26,7 @@ namespace SupermarketPrices.Api.Configuration
                     }));
         }
 
-        public static void AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDependencyInjectionConfiguration(this IServiceCollection services)
         {
 
 
@@ -40,8 +40,6 @@ namespace SupermarketPrices.Api.Configuration
             services.AddTransient<ISupermarketProductRepository, SupermarketProductRepository>();
             services.AddTransient<ISupermarketProductQuery, SupermarketProductQuery>();
 
-
-            //NativeInjectorBootStrapper.RegisterServices(services, configuration);
         }
     }
 }

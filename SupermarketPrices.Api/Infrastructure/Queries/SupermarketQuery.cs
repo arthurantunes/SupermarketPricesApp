@@ -1,4 +1,9 @@
-﻿using SupermarketPrices.Infra.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SupermarketPrices.Api.Models;
+using SupermarketPrices.Infra.Context;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SupermarketPrices.Api.Infrastructure.Queries
 {
@@ -13,6 +18,15 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
             _context = context;
         }
 
+        
 
+        public async Task<IList<SupermarketViewModel>> GetAllAsync()
+        {
+            return await _context.Supermarkets.Select(s => new SupermarketViewModel()
+            {
+                Id = s.Id,
+                Name = s.Name
+            }).ToListAsync();
+        }
     }
 }

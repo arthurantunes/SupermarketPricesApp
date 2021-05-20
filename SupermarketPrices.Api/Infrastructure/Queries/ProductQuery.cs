@@ -18,7 +18,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
             _context = context;
         }
 
-        public async Task<List<ProductViewModel>> GetAllProducts()
+        public async Task<List<ProductViewModel>> GetAllProductsAsync()
         {
             var product = from p in _context.Products
                           select new ProductViewModel
@@ -34,7 +34,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
             return await product.AsNoTracking().ToListAsync();
         }
 
-        public async Task<List<ProductViewModel>> GetProductsByName(string name)
+        public async Task<List<ProductViewModel>> GetProductsByNameAsync(string name)
         {
             var product = _context.Products.Where(x => x.Name.Contains(name)).Select(p =>
                            new ProductViewModel
@@ -50,7 +50,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
             return await product.AsNoTracking().ToListAsync();
         }
 
-        public async Task<ProductSupermarketPriceViewModel> GetAllProductsPrice(int productId)
+        public async Task<ProductSupermarketPriceViewModel> GetAllProductsPriceAsync(int productId)
         {
             var product = from p in _context.Products
 
@@ -79,7 +79,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
             return await product.FirstOrDefaultAsync();
         }
 
-        public async Task<ProductSupermarketPriceViewModel> GetAllProductsByPrice(int productId, int priceFrom, int priceTo)
+        public async Task<ProductSupermarketPriceViewModel> GetAllProductsByPriceAsync(int productId, int priceFrom, int priceTo)
         {
             var product = from p in _context.Products
 

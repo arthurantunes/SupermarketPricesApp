@@ -42,7 +42,7 @@ namespace SupermarketPrices.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SupermarketPrices.Api", Version = "v1" });
             });
 
-            services.AddDependencyInjectionConfiguration(Configuration);
+            services.AddDependencyInjectionConfiguration();
 
         }
 

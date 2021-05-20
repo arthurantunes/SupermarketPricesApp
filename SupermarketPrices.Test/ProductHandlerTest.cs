@@ -7,10 +7,10 @@ namespace SupermarketPrices.Test
 {
     public class ProductHandlerTest
     {
-        private readonly CreateProductCommand _validCommand = new CreateProductCommand("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus");
-        private readonly CreateProductCommand _invalidCommand = new CreateProductCommand("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus");
-        private readonly ProductHandler _handler = new ProductHandler(new ProductFakeRepository());
-        private GenericCommandResult _result = new GenericCommandResult();
+        private readonly CreateProductCommand _validCommand = new("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus");
+        private readonly CreateProductCommand _invalidCommand = new("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus");
+        private readonly ProductHandler _handler = new (new ProductFakeRepository());
+        private GenericCommandResult _result = new();
 
         [Fact]
         public async void ValidProductHandler()
@@ -28,7 +28,7 @@ namespace SupermarketPrices.Test
         [Fact]
         public void ValidProducts()
         {
-            Assert.True(new ProductFakeRepository().GetAll().ToList().Count > 0);
+            Assert.True(ProductFakeRepository.GetAll().ToList().Count > 0);
         }
     }
 }

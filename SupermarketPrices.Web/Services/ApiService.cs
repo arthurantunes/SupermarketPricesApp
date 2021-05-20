@@ -36,9 +36,10 @@ namespace SupermarketPrices.Web.Services
         public async Task<ProductViewModel> CreateProduct(ProductViewModel product)
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/Product", UriKind.RelativeOrAbsolute));
-
-            request.Content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/Product", UriKind.RelativeOrAbsolute))
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json")
+            };
 
             var response = await _httpClient.SendAsync(request);
 
@@ -52,9 +53,10 @@ namespace SupermarketPrices.Web.Services
         public async Task<SupermarketViewModel> CreateSupermarket(SupermarketViewModel supermarket)
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/Supermarket", UriKind.RelativeOrAbsolute));
-
-            request.Content = new StringContent(JsonConvert.SerializeObject(supermarket), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/Supermarket", UriKind.RelativeOrAbsolute))
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(supermarket), Encoding.UTF8, "application/json")
+            };
 
             var response = await _httpClient.SendAsync(request);
 
@@ -68,9 +70,10 @@ namespace SupermarketPrices.Web.Services
         public async Task<SupermarketProductViewModel> RegistrySupermarketProduct(SupermarketProductViewModel supermarketProduct)
         {
 
-            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/SupermarketProduct", UriKind.RelativeOrAbsolute));
-
-            request.Content = new StringContent(JsonConvert.SerializeObject(supermarketProduct), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"/api/SupermarketProduct", UriKind.RelativeOrAbsolute))
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(supermarketProduct), Encoding.UTF8, "application/json")
+            };
 
             var response = await _httpClient.SendAsync(request);
 

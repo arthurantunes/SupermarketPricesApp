@@ -17,12 +17,13 @@ namespace SupermarketPrices.Test
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Product> GetAll()
+        public static IEnumerable<Product> GetAll()
         {
-            List<Product> lst = new List<Product>();
-
-            lst.Add(new Product("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus"));
-            lst.Add(new Product("Macbook Air M1", "Try the new macbook", "64562123", "675434675", "Apple"));
+            List<Product> lst = new()
+            {
+                new Product("Notebook Asus x240", "The best notebook", "axc1234", "1213123", "Asus"),
+                new Product("Macbook Air M1", "Try the new macbook", "64562123", "675434675", "Apple")
+            };
 
             return lst;
         }
@@ -39,11 +40,6 @@ namespace SupermarketPrices.Test
         }
 
         Task<IEnumerable<Product>> IRepository<Product>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<Product>> IProductRepository.GetAllBySupermarketId(int id)
         {
             throw new NotImplementedException();
         }
