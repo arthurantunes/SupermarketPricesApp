@@ -1,0 +1,50 @@
+﻿@page "/supermarket"
+@inject Services.ApiService apiService
+@inject NavigationManager Navigation
+
+<h1>Supermarket List</h1>
+
+
+@if (supermarkets == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="form-group">
+        <NavLink href="createSupermarket" class="btn btn-info">Create Supermarket</NavLink>
+    </div>
+
+
+    <TelerikGrid Data=supermarkets Pageable=true PageSize=5 Height="60%">
+        <GridColumns>
+            <GridColumn Field="Name" />
+            <GridColumn Width="20%">
+                <Template>
+                    @{
+                        SupermarketViewModel currItem = context as SupermarketViewModel;
+                        <TelerikButton OnClick="@( _ => HandleClick(currItem.Id) )">Products</TelerikButton>
+                    }
+                </Template>
+            </GridColumn>
+        </GridColumns>
+    </TelerikGrid>
+
+}
+
+@code {
+    private List<SupermarketViewModel> supermarkets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        supermarkets = await apiService.GetSupermarketsAsync();
+
+    }
+
+    void HandleClick(int id)
+    {
+        Navigation.NavigateTo($"supermarket/{id}");
+
+    }
+
+}

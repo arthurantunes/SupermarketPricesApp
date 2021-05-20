@@ -1,0 +1,62 @@
+﻿@page "/createproduct"
+@inject Services.ApiService apiService
+@inject NavigationManager Navigation
+
+<h3>Create Product</h3>
+
+<div class="row">
+    <EditForm Model="@product" OnValidSubmit="InsertProduct">
+
+
+        <FormFieldSet Width="col-10">
+            <label for="productName" class="font-weight-bold text-secondary">Name</label>
+            <InputText @bind-Value="product.Name" class="form-control" id="productName" />
+            <ValidationMessage For="@(() => product.Name)" />
+        </FormFieldSet>
+
+
+        <FormFieldSet Width="col-10">
+            <label for="productBrand" class="font-weight-bold text-secondary">Brand</label>
+            <InputText @bind-Value="product.Brand" class="form-control" id="productBrand" />
+            <ValidationMessage For="@(() => product.Brand)" />
+        </FormFieldSet>
+
+
+        <FormFieldSet Width="col-10">
+            <label for="trailDescription" class="font-weight-bold text-secondary">Description</label>
+            <InputText @bind-Value="product.Description" class="form-control" id="trailDescription" />
+            <ValidationMessage For="@(() => product.Description)" />
+        </FormFieldSet>
+
+
+        <FormFieldSet Width="col-10">
+            <label for="trailEAN" class="font-weight-bold text-secondary">EAN</label>
+            <InputText @bind-Value="product.EAN" class="form-control" id="trailEAN" />
+            <ValidationMessage For="@(() => product.EAN)" />
+        </FormFieldSet>
+
+
+        <FormFieldSet Width="col-10">
+            <label for="trailSKU" class="font-weight-bold text-secondary">SKU</label>
+            <InputText @bind-Value="product.SKU" class="form-control" id="trailSKU" />
+            <ValidationMessage For="@(() => product.SKU)" />
+        </FormFieldSet>
+
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Create product" />
+            <NavLink href="product" class="btn btn-info">Back to product list</NavLink>
+        </div>
+
+    </EditForm>
+
+</div>
+
+@code { private ProductViewModel product = new ProductViewModel();
+
+
+    private async Task InsertProduct()
+    {
+        var retorno = await apiService.CreateProduct(product);
+        Navigation.NavigateTo("/product");
+    } }

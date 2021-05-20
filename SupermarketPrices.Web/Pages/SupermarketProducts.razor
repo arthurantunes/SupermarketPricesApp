@@ -1,0 +1,85 @@
+﻿@page "/supermarket/{Id:int}"
+@inject Services.ApiService apiService
+@inject IJSRuntime JsRuntime;
+
+@if (supermarket == null || products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1>Products List At @supermarket.Name</h1>
+
+
+    <TelerikGrid Data=supermarket.Products Pageable=true PageSize=5 Height="60%">
+        <GridColumns>
+            <GridColumn Field="Product.Name" />
+            <GridColumn Field="Product.Brand" />
+            <GridColumn Field="Price" />
+            <GridColumn Field="LastUpdateDate" />
+        </GridColumns>
+    </TelerikGrid>
+
+
+    <EditForm Model="@supermarketProduct" OnValidSubmit="InsertSupermarketProduct">
+
+
+        <FormFieldSet Width="100">
+            <label for="product" class="font-weight-bold text-secondary">Product</label>
+            <br />
+            <TelerikComboBox Data="@products"
+                             @bind-Value="@supermarketProduct.ProductId"
+                             Placeholder="Choose a product" Id="product" Width="100"
+                             AllowCustom="false" Filterable="true"
+                             ValueField="@nameof(ProductViewModel.Id)" TextField="@nameof(ProductViewModel.Name)">
+            </TelerikComboBox>
+        </FormFieldSet>
+        <FormFieldSet Width="100">
+            <label for="supermarketName" class="font-weight-bold text-secondary">Price</label>
+            <InputNumber @bind-Value="supermarketProduct.Price" class="form-control" id="supermarketPrice" />
+            <ValidationMessage For="@(() => supermarketProduct.Price)" />
+        </FormFieldSet>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Registry Product" />
+        </div>
+    </EditForm>
+
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private SupermarketViewModel supermarket { get; set; }
+    private List<ProductViewModel> products { get; set; }
+    private SupermarketProductViewModel supermarketProduct { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        supermarket = await apiService.GetSupermarketsAsync(Id);
+        products = await apiService.GetProductsAsync();
+        supermarketProduct = new SupermarketProductViewModel();
+    }
+
+
+    private async Task InsertSupermarketProduct()
+    {
+        if (supermarket.Products.Where(x => x.ProductId.Equals(supermarketProduct.ProductId)).Any())
+        {
+            await JsRuntime.InvokeVoidAsync("alert", "Warning! Product already registred"); // Alert
+
+        }
+        else
+        {
+
+            supermarketProduct.SupermarketId = Id;
+            supermarketProduct.LastUpdateDate = DateTime.Now;
+            var retorno = await apiService.RegistrySupermarketProduct(supermarketProduct);
+            supermarket = await apiService.GetSupermarketsAsync(Id);
+        }
+
+    }
+
+}

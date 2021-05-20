@@ -1,0 +1,38 @@
+﻿@page "/product"
+@inject Services.ApiService apiService
+
+<h1>Products List</h1>
+
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="form-group">
+        <NavLink href="CreateProduct" class="btn btn-info">Create Product</NavLink>
+    </div>
+
+   
+    <TelerikGrid Data=products Pageable=true PageSize=5 Height="60%">
+        <GridColumns>
+            <GridColumn Field="Name" />
+            <GridColumn Field="Brand" />
+            <GridColumn Field="Description" />
+        </GridColumns>
+    </TelerikGrid>
+
+}
+
+@code {
+    private List<ProductViewModel> products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await apiService.GetProductsAsync();
+
+    }
+
+
+}
