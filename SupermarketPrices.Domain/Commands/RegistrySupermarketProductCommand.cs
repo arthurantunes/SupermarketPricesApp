@@ -7,11 +7,11 @@ namespace SupermarketPrices.Domain.Commands
     public class RegistrySupermarketProductCommand : Notifiable<Notification>, ICommand
     {
 
-        public RegistrySupermarketProductCommand(int supermarketId, int productId, DateTime date, decimal price)
+        public RegistrySupermarketProductCommand(int supermarketId, int productId,  decimal price)
         {
             SupermarketId = supermarketId;
             ProductId = productId;
-            Date = date;
+            Date = DateTime.Now;
             Price = price;
 
         }

@@ -25,7 +25,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
 
                     Products = s.SupermarketProduct.Where(sp => sp.ProductId.Equals(productID)).Select(sp => new SupermarketProductViewModel
                     {
-                        LastUpdateDate = sp.Date,
+                        Date = sp.Date,
                         Price = sp.Price,
                         ProductId = sp.ProductId,
                         SupermarketId = sp.SupermarketId,
@@ -54,7 +54,7 @@ namespace SupermarketPrices.Api.Infrastructure.Queries
 
                     Products = s.SupermarketProduct.Select(sp => new SupermarketProductViewModel
                     {
-                        LastUpdateDate = sp.Date,
+                        Date = sp.Date,
                         Price = sp.Price,
                         ProductId = sp.ProductId,
                         SupermarketId = sp.SupermarketId,

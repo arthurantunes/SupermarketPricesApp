@@ -82,7 +82,7 @@ namespace SupermarketPrices.Api.Controllers
             return Ok(await productQuery.GetAllProductsByPriceAsync(productId, priceFrom, priceTo));
         }
 
-        [Route("/name/{name}")]
+        [Route("name/{name}")]
         [HttpGet]
         public async Task<IActionResult> GetAllProductByName(string name)
         {

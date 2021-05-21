@@ -26,6 +26,13 @@ namespace SupermarketPrices.Web.Services
             return response;
         }
 
+        public async Task<List<ProductViewModel>> GetProductsAsync(string name)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<ProductViewModel>>($"/api/product/name/{name}");
+
+            return response;
+        }
+
         public async Task<List<SupermarketViewModel>> GetSupermarketsAsync()
         {
             var response = await _httpClient.GetFromJsonAsync<List<SupermarketViewModel>>($"/api/Supermarket");

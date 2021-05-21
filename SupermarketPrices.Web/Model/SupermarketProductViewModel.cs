@@ -10,7 +10,7 @@ namespace SupermarketPrices.Web.Model
         public int SupermarketId { get; set; }
         public int ProductId { get; set; }
         public decimal Price { get; set; }
-        public DateTime LastUpdateDate { get; set; }
+        public DateTime Date { get; set; }
 
         public ProductViewModel Product { get; set; }
     }
